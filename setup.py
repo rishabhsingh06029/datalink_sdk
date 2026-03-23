@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
-
-with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+try:
+    with open("README.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "A lightweight, unified database connector SDK for Python."
 
 setup(
     name="datalink-sdk",
@@ -13,10 +13,15 @@ setup(
     description="A lightweight, unified database connector SDK for Python.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/your-org/datalink-sdk",
+    url="https://github.com/rishabhsingh06029/datalink_sdk",
     packages=find_packages(),
     python_requires=">=3.8",
-    install_requires=requirements,
+    install_requires=[
+        "mysql-connector-python>=8.0.0",
+        "psycopg2-binary>=2.9.0",
+        "pymongo>=4.0.0",
+        "redis>=4.0.0",
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
